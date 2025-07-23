@@ -1,11 +1,11 @@
-package com.codeboxes.CodeboxServer.DTOs;
+package com.codeboxes.CodeboxServer.DTOs.JdoodleCodeCompile;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CodeCompilePayload {
+public class JdoodleCodeCompilePayload {
   private String clientId;
   private String clientSecret;
   private String script;
@@ -15,10 +15,10 @@ public class CodeCompilePayload {
   private boolean compileOnly;
 
   // constructors
-  public CodeCompilePayload() {
+  public JdoodleCodeCompilePayload() {
   }
 
-  public CodeCompilePayload(String code, String language, String input) {
+  public JdoodleCodeCompilePayload(String code, String language, String input) {
     this.script = code;
     this.stdin = input;
     this.language = language;
@@ -26,7 +26,7 @@ public class CodeCompilePayload {
     this.compileOnly = false;
   }
 
-  public CodeCompilePayload(CodeCompileRequest request) {
+  public JdoodleCodeCompilePayload(JdoodleCodeCompileRequest request) {
     this.script = request.getCode();
     this.stdin = request.getInput();
     this.language = request.getLanguage();

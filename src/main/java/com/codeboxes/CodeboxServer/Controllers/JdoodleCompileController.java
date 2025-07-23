@@ -8,26 +8,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codeboxes.CodeboxServer.DTOs.CodeCompileRequest;
-import com.codeboxes.CodeboxServer.DTOs.CodeCompileResponse;
 import com.codeboxes.CodeboxServer.DTOs.CommonResponse;
-import com.codeboxes.CodeboxServer.Services.CompileService;
+import com.codeboxes.CodeboxServer.DTOs.JdoodleCodeCompile.JdoodleCodeCompileRequest;
+import com.codeboxes.CodeboxServer.DTOs.JdoodleCodeCompile.JdoodleCodeCompileResponse;
+import com.codeboxes.CodeboxServer.Services.JdoodleCompileService;
 
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/compile")
+@RequestMapping("/api/v1/compile")
 @CrossOrigin(origins = "http://localhost:3000")
-public class CompileController {
+public class JdoodleCompileController {
   @Autowired
-  private CompileService compileService;
+  private JdoodleCompileService compileService;
 
   @PostMapping
-  public Mono<ResponseEntity<CommonResponse<CodeCompileResponse>>> compileCode(
-      @RequestBody CodeCompileRequest request) {
-    Mono<CodeCompileResponse> rawResponse = compileService.compileCode(request);
+  public Mono<ResponseEntity<CommonResponse<JdoodleCodeCompileResponse>>> compileCode(
+      @RequestBody JdoodleCodeCompileRequest request) {
+    Mono<JdoodleCodeCompileResponse> rawResponse = compileService.compileCode(request);
     return rawResponse.map(monoResponse -> {
-      CommonResponse<CodeCompileResponse> response = new CommonResponse<>(monoResponse);
+      CommonResponse<JdoodleCodeCompileResponse> response = new CommonResponse<>(monoResponse);
       return ResponseEntity.ok(response);
     });
   }

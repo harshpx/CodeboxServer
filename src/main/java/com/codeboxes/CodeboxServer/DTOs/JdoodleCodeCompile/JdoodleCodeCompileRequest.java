@@ -1,4 +1,4 @@
-package com.codeboxes.CodeboxServer.DTOs;
+package com.codeboxes.CodeboxServer.DTOs.JdoodleCodeCompile;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CodeCompileRequest {
+public class JdoodleCodeCompileRequest {
   @NotNull
   private String code;
   @NotNull
@@ -14,10 +14,10 @@ public class CodeCompileRequest {
   @NotNull
   private String input;
 
-  public CodeCompileRequest() {
+  public JdoodleCodeCompileRequest() {
   }
 
-  public CodeCompileRequest(String code, String language, String input) {
+  public JdoodleCodeCompileRequest(String code, String language, String input) {
     this.code = code;
     this.language = language;
     this.input = input;

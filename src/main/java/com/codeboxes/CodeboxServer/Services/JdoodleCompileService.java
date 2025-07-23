@@ -5,14 +5,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.codeboxes.CodeboxServer.DTOs.CodeCompilePayload;
-import com.codeboxes.CodeboxServer.DTOs.CodeCompileRequest;
-import com.codeboxes.CodeboxServer.DTOs.CodeCompileResponse;
+import com.codeboxes.CodeboxServer.DTOs.JdoodleCodeCompile.JdoodleCodeCompilePayload;
+import com.codeboxes.CodeboxServer.DTOs.JdoodleCodeCompile.JdoodleCodeCompileRequest;
+import com.codeboxes.CodeboxServer.DTOs.JdoodleCodeCompile.JdoodleCodeCompileResponse;
 
 import reactor.core.publisher.Mono;
 
 @Service
-public class CompileService {
+public class JdoodleCompileService {
   @Autowired
   private WebClient webClient;
 
@@ -23,17 +23,17 @@ public class CompileService {
 
   private final String uri = "https://api.jdoodle.com/v1/execute";
 
-  public Mono<CodeCompileResponse> compileCode(CodeCompileRequest request) {
+  public Mono<JdoodleCodeCompileResponse> compileCode(JdoodleCodeCompileRequest request) {
 
-    CodeCompilePayload payload = new CodeCompilePayload(request);
+    JdoodleCodeCompilePayload payload = new JdoodleCodeCompilePayload(request);
     payload.setClientId(clientId);
     payload.setClientSecret(clientSecret);
 
     return webClient.post()
         .uri(uri)
         .header("Content-Type", "application/json")
-        .body(Mono.just(payload), CodeCompilePayload.class)
+        .body(Mono.just(payload), JdoodleCodeCompilePayload.class)
         .retrieve()
-        .bodyToMono(CodeCompileResponse.class);
+        .bodyToMono(JdoodleCodeCompileResponse.class);
   }
 }

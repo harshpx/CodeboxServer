@@ -1,4 +1,4 @@
-package com.codeboxes.CodeboxServer.DTOs;
+package com.codeboxes.CodeboxServer.DTOs.JdoodleCodeCompile;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CodeCompileResponse {
+public class JdoodleCodeCompileResponse {
   private String output;
   private String error;
   private int statusCode;
@@ -19,10 +19,10 @@ public class CodeCompileResponse {
   private boolean isExecutionSuccess;
   private boolean isCompiled;
 
-  public CodeCompileResponse() {
+  public JdoodleCodeCompileResponse() {
   }
 
-  public CodeCompileResponse(String output, String error, int statusCode, String memory, String cpuTime,
+  public JdoodleCodeCompileResponse(String output, String error, int statusCode, String memory, String cpuTime,
       Integer compilationStatus, String projectKey, boolean isExecutionSuccess, boolean isCompiled) {
     this.output = output;
     this.error = error;
